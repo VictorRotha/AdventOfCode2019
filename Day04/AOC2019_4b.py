@@ -5,31 +5,23 @@
 # part 2: doubles not part of a larger group
 
 counter = 0
-#git add
-
 for number in range(136760, 595731):
-    ispassword = True
-    increased = True
-    hasdouble = False
-    for i, char in enumerate(str(number)):
-        last = int(str(number)[i-1]) if i > 0 else None
-        lastlast = int(str(number)[i-2]) if i > 1 else None
-        nxt = int(str(number)[i+1]) if i < 5 else None
-        if i > 0 and int(char) < last:
-            increased = False
+    doubles = [1]
+    decrease = False
+    for i in range(1, len(str(number))):
+        if str(number)[i] < str(number)[i - 1]:
+            decrease = True
             break
-        if i > 0 and int(char) == last and hasdouble == False:
-            hasdouble = True
-            if int(char) == lastlast or int(char) == nxt:
-                hasdouble = False
-
-    if not increased or not hasdouble:
-        continue
-    counter += 1
+        if str(number)[i] == str(number)[i - 1]:
+            doubles[-1] += 1
+        else:
+            doubles.append(1)
+    if not decrease and 2 in doubles:
+        counter += 1
 
 print(f'Possible Passwords: {counter}')
 
-# part 2: 1264 RICHTIG
+# part 2: 1264
 
 
 
