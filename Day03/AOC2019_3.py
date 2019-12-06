@@ -2,19 +2,15 @@ def get_manhatten(x, y):
     return abs(x)+abs(y)
 
 def make_path(wire):
-    pos = (0,0)
+    directions = {'R': (1,0), 'L': (-1,0), 'U': (0,-1), 'D': (0,1)}
+    posx, posy = (0,0)
     path = []
     for node in wire:
+        dx, dy = directions[node[0]]
         for step in range(int(node[1:])):
-            if node[0] == 'R':
-                pos = (pos[0] + 1, pos[1])
-            elif node[0] == 'L':
-                pos = (pos[0] - 1, pos[1])
-            elif node[0] == 'U':
-                pos = (pos[0], pos[1] - 1)
-            elif node[0] == 'D':
-                pos = (pos[0], pos[1] + 1)
-            path.append(pos)
+            posx += dx
+            posy += dy
+            path.append((posx, posy))
     return path
 
 with open('input.txt', 'r') as f:
