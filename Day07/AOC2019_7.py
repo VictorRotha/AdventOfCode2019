@@ -1,6 +1,5 @@
 import itertools
 
-
 with open('input.txt', 'r') as f:
     base_program = [int(n) for n in f.readline().split(',')]
 
@@ -18,9 +17,7 @@ def intcode(phase, in_value):
         if opcode == 99:
             print ('Position: ', position, 'HALT', 'output', output_value)
             return output_value
-            # break
         param_1 = program[program[position + 1]] if modus[2] == 0 else program[position + 1]
-        # print('Position ', position, 'opcode ', opcode, output_value)
         if opcode in (1, 2, 5, 6, 7, 8):
             param_2 = program[program[position + 2]] if modus[1] == 0 else program[position + 2]
         if opcode == 1:
@@ -34,12 +31,10 @@ def intcode(phase, in_value):
                 program[program[position + 1]] = phase
             else:
                 program[program[position + 1]] = in_value
-            # print ('Position ', position, 'opcode ', opcode)
             position += 2
         elif opcode == 4:
             output_value = program[program[position+1]] if modus[2] == 0 else program[position+1]
             return output_value
-            # print('Position: ', position, 'Output:',  output_value)
             position += 2
         elif opcode == 5:
             position = param_2 if param_1 != 0 else position + 3
@@ -52,8 +47,6 @@ def intcode(phase, in_value):
             program[program[position + 3]] = 1 if param_1 == param_2 else 0
             position += 4
 
-
-
 perms = itertools.permutations(range(5), 5)
 outputs = []
 for perm in perms:
@@ -62,7 +55,7 @@ for perm in perms:
         input_value = intcode(ph, input_value)
     outputs.append(input_value)
 
-print ('MAX OUTPUT: ', max(outputs))
+print ('PART 1 MAX OUTPUT: ', max(outputs))
 
 
 
