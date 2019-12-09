@@ -83,14 +83,13 @@ class Computer:
 with open('input.txt', 'r') as f:
     base_program = [int(n) for n in f.readline().split(',')]
 
-input_value = 1
+input_value = 2
 
 computer = Computer(base_program)
 computer.run(input_value)
 
-# OUTPUT 2662308295 at Position 901
-
-
+# PART 01 (input_value 1) OUTPUT 2662308295 at Position 901
+# PART 02 (input_value 2) OUTPUT 63441 at Position 919
 
 
 
