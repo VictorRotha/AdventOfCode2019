@@ -52,10 +52,3 @@ print ('BEST ', max_key, max_value)
 # ALL   356
 # BEST  (14, 17) 260
 
-
-
-
-
-
-
-
