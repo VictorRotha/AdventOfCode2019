@@ -78,6 +78,7 @@ panel = defaultdict(int)
 
 robot_face = 0
 robot_pos = (0,0)
+panel[robot_pos] = 1
 
 while True:
     new_color, direction = computer.run(panel[robot_pos])
@@ -89,21 +90,24 @@ while True:
 print ('PAINTED PANELS: ', len(panel))
 # PAINTED PANELS:  2720
 
+xvalues = [x for (x,y) in panel.keys()]
+xmin, xmax = min(xvalues), max(xvalues)
+yvalues = [y for (x,y) in panel.keys()]
+ymin, ymax = min(yvalues), max(yvalues)
 
+print(f'X {xmin}-{xmax}, Y {ymin}-{ymax}')
 
+for row in range(ymax+1):
+    for col in range(xmax+1):
+        char = '*' if panel[col, row] == 1 else ' '
+        print(char, ' ', end='')
+    print()
 
+# JZPJRAGJ
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#          *  *     *  *  *  *     *  *  *              *  *     *  *  *           *  *           *  *              *  *
+#             *              *     *        *              *     *        *     *        *     *        *              *
+#             *           *        *        *              *     *        *     *        *     *                       *
+#             *        *           *  *  *                 *     *  *  *        *  *  *  *     *     *  *              *
+#    *        *     *              *              *        *     *     *        *        *     *        *     *        *
+#       *  *        *  *  *  *     *                 *  *        *        *     *        *        *  *  *        *  *
