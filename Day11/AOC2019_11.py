@@ -76,17 +76,14 @@ def turn(face, direction, pos):
 computer = Computer(base_program)
 panel = defaultdict(int)
 
-painted = []
-robot_pos = (0,0)
 robot_face = 0
+robot_pos = (0,0)
 
 while True:
     new_color, direction = computer.run(panel[robot_pos])
     if new_color == 'HALT':
         break
     panel[robot_pos] = new_color
-    if not robot_pos in painted:
-        painted.append(robot_pos)
     robot_face, robot_pos = turn(robot_face, direction, robot_pos)
 
 print ('PAINTED PANELS: ', len(panel))
