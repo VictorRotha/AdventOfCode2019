@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 class Computer:
     def __init__(self, program, panel):
         self.program = program.copy()
@@ -5,11 +7,7 @@ class Computer:
         self.position = 0
         self.base = 0
 
-    def check_exists(self, pos):
-        if pos >= len(self.program):
-            self.program.extend([0]*(pos - len(self.program) + 1))
-
-    def run(self, in_value=None):
+    def run(self):
         output_values = []
         ticks = 0
         param_1, param_2 = None, None
@@ -21,24 +19,20 @@ class Computer:
             if opcode == 99:
                 print(f'HALT at Position {self.position}')
                 _, _, score = self.apply_outputs(output_values)
-                self.panel_print()
-                print(f'GAME OVER! TOTAL SCORE: {score}')
-                print(f'TICKS: {ticks}')
+                # self.panel_print()
+                print(f'GAME OVER! \nTOTAL SCORE: {score}\nTICKS: {ticks}')
                 return
             step = (0, 4, 4, 2, 2, 0, 0, 4, 4, 2)[opcode]
             positions = (self.program[self.position + 1], self.position + 1, self.base + self.program[self.position + 1])
             param_1_pos = positions[modus[0]]
-            self.check_exists(param_1_pos)
             param_1 = self.program[param_1_pos]
             if opcode in (1, 2, 5, 6, 7, 8):
                 positions = (self.program[self.position + 2], self.position + 2, self.base + self.program[self.position + 2])
                 param_2_pos = positions[modus[1]]
-                self.check_exists(param_2_pos)
                 param_2 = self.program[param_2_pos]
             if opcode in (1, 2, 7, 8):
                 positions = (self.program[self.position + 3], None, self.base + self.program[self.position + 3])
                 param_3_pos = positions[modus[2]]
-                self.check_exists(param_3_pos)
 
             if opcode == 1:
                 self.program[param_3_pos] = param_1 + param_2
@@ -103,8 +97,10 @@ class Computer:
                 self.panel[y][x] = tile
         return play_x, ball_x, score
 
+base_program = defaultdict(int)
 with open('input.txt', 'r') as f:
-    base_program = [int(n) for n in f.readline().split(',')]
+    for k, n in enumerate(f.readline().split(',')):
+        base_program[k] = int(n)
 
 base_program[0] = 2
 
@@ -113,4 +109,3 @@ panel = [[0]*xmax for _ in range(ymax)]
 
 computer = Computer(base_program, panel)
 computer.run()
-
