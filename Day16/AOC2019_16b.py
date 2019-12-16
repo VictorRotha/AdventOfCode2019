@@ -5,42 +5,20 @@ puzzle_input = 59718730609456731351293131043954182702121108074562978243742884161
 
 base_pattern = [0,1,0,-1]
 cycles = 100
+offset = int(str(puzzle_input)[:7])
 
 ins = [int(x) for x in str(puzzle_input)]
-patterns = []
-for i in range(len(ins)):
-    pattern = []
-    for p in base_pattern:
-        pattern.extend([p]*(i+1))
-    new_pattern = pattern.copy()
-    while len(new_pattern) < len(ins)+1:
-        new_pattern += pattern
-    patterns.append(new_pattern[1:])
+ins = ins*10_000
+ins = ins[offset:]
 
-print ('Patterns ', time.time()-now)
+for cycle in range(100):
+    for i in range(len(ins)-2, -1, -1):
+        ins[i] = ins[i] + ins[i+1]
+        ins[i] = ins[i] % 10
 
-for cycle in range(cycles):
-    result = []
-    for i in range(len(ins)):
-        result.append(abs(sum([(n*p) for n, p in zip(ins, patterns[i])]))%10)
-    # print(cycle, 'Input: ', ins, 'Output: ', result)
-    ins = result.copy()
-
-print ('100 Cycles: ', time.time()-now)
+print ('Part 02: ', time.time()-now)
 eight = ''.join([str(n) for n in ins[:8]])
 print(f'First 8 digits: {eight}')
 
-# Patterns  0.04687309265136719
-# 100 Cycles:  7.156249284744263
-
-# First 8 digits: 19944447
-
-
-
-
-
-
-
-
-
-
+# Part 02:  50.12500286102295
+# First 8 digits: 81207421
