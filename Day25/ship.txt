@@ -1,0 +1,30 @@
+                                                    Hallway -------- Warp Drive Maintance
+                                                    ()               ()
+                                                    |
+                        Corridor ------------------ Hull Breach
+                        (giant electromagnet)       ()
+                                                    |
+                Observatory ------- Stables         |
+                (photons)           (manifold)      |
+                                    |               |
+SECURITY CHECK ----- Kitchen ------ Science Lab --- Sick Bay
+()                  (monolith)      (sand)          (space law space brochure)
+                                                    |
+                                                    |
+                                                    |
+                                    Arcade          |
+                                    (wreath)        |
+                                    |               |
+                Navigation--------- Engineering     |
+                (infinite loop)     ()              |
+                                    |               |
+        Hot Chocolate Fountain ---- Storage ------- Gift Wrapper Center
+        (molten lava)               ()              (mouse)
+                                                    |
+                                    Holodeck ------ Passages
+                                    (escape pod)    (astrolabe)
+                                                    |
+                                                    Crew Quarters
+                                                    (mug)
+
+(wreath, mug, astrolabe, sand)
